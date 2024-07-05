@@ -30,3 +30,5 @@ export const validArrayChar = (wordArrays: string[]) => {
     if (!Array.isArray(wordArrays) || !wordArrays?.length) return false
     return !(wordArrays.some((cv) => !validChar(cv)))
 }
+
+export const getToken = () => null
