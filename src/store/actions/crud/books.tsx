@@ -1,19 +1,22 @@
 import { createApi } from '@reduxjs/toolkit/query/react'
 import baseQuery from '../../../constants/client'
+import type { ReturnValueHere, ArgumentTypeHere } from './interface'
 
-type ReturnValueHere = any // Assing the value from products that will receive
-type ArgumentTypeHere = void // assing the values from arguments... if none return void.
-
-
-const products = createApi({
+const books = createApi({
     baseQuery,
     reducerPath: 'books',
     endpoints: (builder) => ({
-        getProds: builder.query<ReturnValueHere, ArgumentTypeHere>({
-            query: () => `books/`
+        getBooks: builder.mutation<ReturnValueHere, ArgumentTypeHere>({
+            query: (param) => {
+                return {
+                    url: 'books/',
+                    method: 'POST',
+                    body: param
+                }
+            }
         }),
     })
 })
 
-export const { useGetProdsQuery } = products
-export default products
+export const { useGetBooksMutation } = books
+export default books

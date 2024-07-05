@@ -1,14 +1,14 @@
-import products from './books'
+import books from './books'
 import type { GetDefaultMiddleware } from '@reduxjs/toolkit/dist/getDefaultMiddleware'
 
 export * from './books'
 
 const finalDef = {
     reducer: {
-        products: products.reducer
+        books: books.reducer
     },
     middleware: (getMidDef: GetDefaultMiddleware) => getMidDef().concat(...[
-        products.middleware
+        books.middleware
     ])
 }
 
