@@ -14,7 +14,7 @@ Running local:
  - `yarn test`: Runs all the unit tests
  - `yarn testcover`: Runs all the unit tests with coverage
  - `yarn lint`: Runs the code linter for JS and SCSS files
- - `yarn lint:ts`: Runs the code linter on all js files
+ - `yarn lint:ts`: Runs the code linter on all ts files
  - `yarn lint:scss`: Runs the code linter on all scss files
 
 ## Important:
