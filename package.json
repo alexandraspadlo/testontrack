@@ -44,12 +44,28 @@
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": [
-        "yarn lint:ts"
+      "yarn lint:ts"
     ],
     "src/**/*.scss": [
-        "yarn lint:scss"
+      "yarn lint:scss"
     ]
-},
+  },
+  "jest": {
+    "coveragePathIgnorePatterns": [
+      "index.jsx"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "statements": 100,
+        "branches": 100,
+        "functions": 100,
+        "lines": 100
+      }
+    }
+  },
+  "engines": {
+    "node": "^18"
+  },
   "eslintConfig": {
     "extends": [
       "react-app",

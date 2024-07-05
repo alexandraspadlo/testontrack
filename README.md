@@ -1,46 +1,50 @@
-# Getting Started with Create React App
+# Test on track
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+To build this project you will require: NodeJS and Yarn or NPM
 
-## Available Scripts
+## Commands
 
-In the project directory, you can run:
+Running local:
 
-### `yarn start`
+ - Before eveything run: `cp .env.local .env`. This will create the .env file with the variables needed to run locally.
+ - `yarn be4-install`: First installation of all the dependencies and setup husky
+ - `yarn be4-commit`: Run all unit test and linter before commit to ensure will not break husky or CI/CD pipeline
+ - `yarn start`: Run in develop mode
+ - `yarn build`: Clean the build folder and builds all the static assets for the project within the /build folder
+ - `yarn test`: Runs all the unit tests
+ - `yarn testcover`: Runs all the unit tests with coverage
+ - `yarn lint`: Runs the code linter for JS and SCSS files
+ - `yarn lint:ts`: Runs the code linter on all js files
+ - `yarn lint:scss`: Runs the code linter on all scss files
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Important:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+I am using node-sass to enable SCSS modules, node-sass require a correctly version of Node to work properly:
 
-### `yarn test`
+NodeJS  | Minimum node-sass version | Node Module
+--------|--------------------------|------------
+Node 20 | 9.0+                     | 115
+Node 19 | 8.0+                     | 111
+Node 18 | 8.0+                     | 108
+Node 17 | 7.0+,<8.0                | 102
+Node 16 | 6.0+                     | 93
+Node 15 | 5.0+,<7.0                | 88
+Node 14 | 4.14+,<9.0               | 83
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+As my machine is currently running Node 18, my node-sass is config as 8.0.
 
-### `yarn build`
+## Git Hooks:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The project count with Husky and Lint Staged:
+ - `pre-commit`: Run all scripts on lint-staged
+    - `lint-staged`: Run all linters and add to commit if something be fix
+ - `pre-push`: Run all unit tests.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Project structure
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+ - `src`: JavaScript source code of the application
+ - `public`: HTML template
 
-### `yarn eject`
+## Development URLs
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Home screen: `http://localhost:3000/`
