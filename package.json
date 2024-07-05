@@ -1,27 +1,55 @@
 {
-  "name": "name-of-your-app",
+  "name": "test-on-track",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^13.0.0",
-    "@testing-library/user-event": "^13.2.1",
-    "@types/jest": "^27.0.1",
-    "@types/node": "^16.7.13",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.14.2",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "bootstrap": "5.3.3",
+    "@popperjs/core": "2.11.8",
+    "typescript": "^5.4.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-router-dom": "^6.16.0",
     "react-scripts": "5.0.1",
-    "typescript": "^4.4.2",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "be4-install": "yarn install && rimraf .husky && yarn husky && echo 'yarn lint-staged' > .husky/pre-commit && echo 'yarn testcover' > .husky/pre-push",
+    "be4-commit": "yarn test -u && yarn lint && git add --all",
+    "lint": "yarn lint:ts && yarn lint:scss",
+    "lint:ts": "eslint './src/**/*.{ts,tsx}' --fix",
+    "lint:scss": "stylelint 'src/**/*.scss' --custom-syntax postcss-scss --fix",
+    "start": "cp .env.local .env && react-scripts start",
+    "test": "react-scripts test --watchAll=false",
+    "testcover": "react-scripts test --coverage --watchAll=false",
     "build": "react-scripts build",
-    "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "7.21.0",
+    "@testing-library/jest-dom": "^6.4.5",
+    "@testing-library/react": "^15.0.7",
+    "@testing-library/user-event": "^14.5.2",
+    "lint-staged": "15.2.5",
+    "stylelint": "16.6.1",
+    "stylelint-config-standard": "36.0.0",
+    "husky": "9.0.11",
+    "node-sass": "8.0.0",
+    "sass-loader": "14.2.1",
+    "postcss": "^8.4.38",
+    "postcss-scss": "^4.0.9"
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx}": [
+        "yarn lint:ts"
+    ],
+    "src/**/*.scss": [
+        "yarn lint:scss"
+    ]
+},
   "eslintConfig": {
     "extends": [
       "react-app",
