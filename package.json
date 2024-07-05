@@ -1,6 +1,8 @@
 {
   "name": "test-on-track",
   "version": "0.1.0",
+  "author": "Aleksandra Spadlo",
+  "license": "MIT",
   "private": true,
   "dependencies": {
     "@types/jest": "^29.5.12",

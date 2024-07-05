@@ -13,7 +13,7 @@ Running local:
  - `yarn build`: Clean the build folder and builds all the static assets for the project within the /build folder
  - `yarn test`: Runs all the unit tests
  - `yarn testcover`: Runs all the unit tests with coverage
- - `yarn lint`: Runs the code linter for JS and SCSS files
+ - `yarn lint`: Runs the code linter for TS and SCSS files
  - `yarn lint:ts`: Runs the code linter on all ts files
  - `yarn lint:scss`: Runs the code linter on all scss files
 
