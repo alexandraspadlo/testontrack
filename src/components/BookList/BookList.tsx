@@ -1,4 +1,4 @@
-import { FC, useEffect, useCallback } from 'react'
+import { FC, useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import type { BookObj } from '../../store/actions/crud/interface'
 import { useGetBooksMutation } from '../../store/actions'
@@ -12,11 +12,9 @@ const BookList: FC = () => {
         // error 
     }] = useGetBooksMutation()
 
-    const callBooks = useCallback(() => getBooks(), [])
-
     useEffect(() => {
-        callBooks()
-    },[callBooks])
+        getBooks()
+    },[])
 
     if (isLoading || !data) return (
         <div className="container py-5">

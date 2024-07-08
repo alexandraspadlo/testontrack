@@ -1,8 +1,9 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
+import { renderWithProviders } from '../../utils/testutils'
 import BookList from './BookList'
 
-test('renders learn react link', () => {
-  render(<BookList />)
-  const linkElement = screen.getByText(/Book List/i)
-  expect(linkElement).toBeInTheDocument()
+test('renders learn react link', async () => {
+  renderWithProviders(<BookList />)
+  expect(screen.getByText(/LOADING . . ./i)).toBeInTheDocument()
+  expect(await screen.findByText(/Book list/i)).toBeInTheDocument()
 })
