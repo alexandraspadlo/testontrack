@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import type { BookObj } from '../../store/actions/crud/interface'
 import { useGetBooksMutation } from '../../store/actions'
@@ -7,14 +7,15 @@ import s from './BookList.module.scss'
 
 const BookList: FC = () => {
     const { title, subTitle } = schema || {}
+    const [page, setPage] = useState(1)
 
     const [getBooks, { data, isLoading,
         // error 
     }] = useGetBooksMutation()
 
     useEffect(() => {
-        getBooks()
-    }, [])
+        getBooks({ page })
+    }, [page])
 
     if (isLoading || !data) return (
         <div className="container py-5">
@@ -27,13 +28,29 @@ const BookList: FC = () => {
     )
 
     const finalData = data?.books || []
+    const maxBooks = data?.count || 0
+    const maxPage = Math.ceil(maxBooks / 20)
+
+    const handlePage = (param?: boolean) => {
+        if(param ? page >= maxPage : page <= 1) return null
+        return setPage(param ? page + 1 : page - 1)
+    }
 
     return (
         <div className="container py-5">
             <div className="row">
                 <div className="col-12 text-center">
                     <p className={`h1 ${s.pointer} text-primary mb-3`}>{title}</p>
-                    <p className={`h5 text-muted`}>{subTitle}</p>
+                    <p className={`h5 text-muted mb-4`}>{subTitle}</p>
+                </div>
+            </div>
+            <div className='row'>
+                <div className='col-12 col-lg-6'>
+                    <span>Page: <strong>{page}</strong></span><span className='ms-3'>Max page: <strong>{maxPage}</strong></span>
+                </div>
+                <div className='col-12 col-lg-6 text-end'>
+                    <span aria-hidden="true" onClick={() => handlePage()} className={`btn btn-warning d-inline-block me-3 ${page <= 1 ? 'disabled' : ''}`}>Previous</span>
+                    <span aria-hidden="true" onClick={() => handlePage(true)} className={`btn btn-primary d-inline-block ${page >= maxPage ? 'disabled' : ''}`}>Next</span>
                 </div>
             </div>
             <div className='row'>

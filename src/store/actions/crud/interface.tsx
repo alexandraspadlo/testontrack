@@ -10,7 +10,19 @@ export interface BookObj {
 
 interface Books {
     books: BookObj[]
+    count: number
+}
+
+interface FilterProp {
+    type: string,
+    values: string[]
+}
+
+interface APIPayload {
+    page?: number,
+    itemsPerPage?: number,
+    filters?: FilterProp[]
 }
 
 export type ReturnValueHere = Books // Assing the value from products that will receive
-export type ArgumentTypeHere = void // assing the values from arguments... if none return void.
+export type ArgumentTypeHere = APIPayload // assing the values from arguments... if none return void.
