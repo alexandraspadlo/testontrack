@@ -1,9 +1,43 @@
-import { screen } from '@testing-library/react'
+import { screen, fireEvent } from '@testing-library/react'
 import { renderWithProviders } from '../../../utils/testutils'
+import * as MockSchema from './data'
 import Header from './Header'
 
-test('renders header', async () => {
-  renderWithProviders(<Header />)
-  expect(screen.getByText(/Here are a books available - check the list below/i)).toBeInTheDocument()
-  expect(await screen.findByText(/Book list/i)).toBeInTheDocument()
+const commonProps = {
+    handlePage: jest.fn(),
+    maxPage: 4,
+    page: 1
+}
+
+describe('test Header component', () => {
+    test('renders header with full props, first button disabled', async () => {
+        renderWithProviders(<Header {...commonProps} />)
+        expect(screen.getByText(/Here are a books available - check the list below/i)).toBeInTheDocument()
+        expect(await screen.findByText(/Book list/i)).toBeInTheDocument()
+    })
+    test('renders previous disable button', async () => {
+        renderWithProviders(<Header {...commonProps} />)
+        expect(screen.getByText(/Previous/).className).toContain('disabled')
+    })
+    test('click next button', async () => {
+        const mockFunction = jest.fn()
+        renderWithProviders(<Header {...commonProps} handlePage={mockFunction} />)
+        fireEvent.click(screen.getByText(/Next/))
+        expect(mockFunction).toHaveBeenCalledTimes(1)
+    })
+    test('click previous button', async () => {
+        const mockFunction = jest.fn()
+        renderWithProviders(<Header {...commonProps} handlePage={mockFunction} />)
+        fireEvent.click(screen.getByText(/Previous/))
+        expect(mockFunction).toHaveBeenCalledTimes(1)
+    })
+    test('renders next disable button', async () => {
+        renderWithProviders(<Header {...commonProps} page={4} />)
+        expect(screen.getByText(/Next/).className).toContain('disabled')
+    })
+    test('should not renders without schema', async () => {
+        MockSchema.default = null
+        const { container } = renderWithProviders(<Header {...commonProps} />)
+        expect(container).toBeEmptyDOMElement()
+    })
 })

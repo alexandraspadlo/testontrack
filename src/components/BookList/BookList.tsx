@@ -18,9 +18,7 @@ const BookList: FC = () => {
 
     if (isLoading || !data) return <LoadingPage />
 
-    const finalData = data?.books || []
-    const maxBooks = data?.count || 0
-    const maxPage = Math.ceil(maxBooks / 20)
+    const maxPage = Math.ceil(data?.count / 20)
 
     const handlePage = (param?: boolean) => {
         if (param ? page >= maxPage : page <= 1) return null
@@ -31,14 +29,14 @@ const BookList: FC = () => {
         <div className="container py-5">
             <Header handlePage={handlePage} maxPage={maxPage} page={page} />
             <div className='row'>
-                {finalData?.map((cv: BookObj) => (
+                {data?.books?.map?.((cv: BookObj) => (
                     <div key={uuidv4()} className="col-12 col-lg-4 mt-4">
                         <section className="w-100 h-100 bg-light p-3 rounded">
-                            <p className="h5 text-primary mb-0">Title: <strong>{cv?.book_title || 'Unknown'}</strong></p>
-                            <p className="mb-2">Author: <strong>{cv?.book_author || 'Unknown'}</strong></p>
-                            <p className="mb-0">Year: <strong>{cv?.book_publication_year || 'N/A'}</strong></p>
-                            <p className="mb-0">Pages: <strong>{cv?.book_pages || 'N/A'}</strong></p>
-                            <p className="mb-0">Publication address: <strong>{[cv?.book_publication_city, cv?.book_publication_country].filter(obj => obj).join(', ') || 'N/A'}</strong></p>
+                            <p className="h5 text-primary mb-0">Title: <strong>{cv?.book_title}</strong></p>
+                            <p className="mb-2">Author: <strong>{cv?.book_author}</strong></p>
+                            <p className="mb-0">Year: <strong>{cv?.book_publication_year}</strong></p>
+                            <p className="mb-0">Pages: <strong>{cv?.book_pages}</strong></p>
+                            <p className="mb-0">Publication address: <strong>{[cv?.book_publication_city, cv?.book_publication_country].filter(obj => obj).join(', ')}</strong></p>
                         </section>
                     </div>
                 )

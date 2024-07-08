@@ -22,7 +22,7 @@
     "uuid": "^10.0.0"
   },
   "scripts": {
-    "be4-install": "yarn install && rimraf .husky && yarn husky && echo 'yarn lint-staged' > .husky/pre-commit && echo 'yarn test' > .husky/pre-push",
+    "be4-install": "yarn install && rimraf .husky && yarn husky && echo 'yarn lint-staged' > .husky/pre-commit && echo 'yarn testcover' > .husky/pre-push",
     "be4-commit": "yarn test -u && yarn lint && git add --all",
     "lint": "yarn lint:ts && yarn lint:scss",
     "lint:ts": "eslint './src/**/*.{ts,tsx}' --fix",
@@ -58,7 +58,9 @@
   },
   "jest": {
     "coveragePathIgnorePatterns": [
-      "index.jsx"
+      "index.tsx",
+      "handlers.tsx",
+      "interface.tsx"
     ],
     "coverageThreshold": {
       "global": {

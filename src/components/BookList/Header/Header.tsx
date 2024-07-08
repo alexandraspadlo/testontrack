@@ -1,9 +1,10 @@
 import { FC } from 'react'
-import { PagProps } from './interfaces'
+import { PagProps } from './interface'
 import schema from './data'
 
 const Header: FC<PagProps> = ({ handlePage, maxPage, page }) => {
-    const { title, subTitle } = schema || {}
+    if(!schema || !handlePage || !maxPage || !page) return null
+    const { title, subTitle } = schema
     return (
         <div className="row">
             <div className="col-12 text-center">
