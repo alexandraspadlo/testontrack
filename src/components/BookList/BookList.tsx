@@ -8,13 +8,13 @@ import s from './BookList.module.scss'
 const BookList: FC = () => {
     const { title, subTitle } = schema || {}
 
-    const [getBooks, { data, isLoading, 
+    const [getBooks, { data, isLoading,
         // error 
     }] = useGetBooksMutation()
 
     useEffect(() => {
         getBooks()
-    },[])
+    }, [])
 
     if (isLoading || !data) return (
         <div className="container py-5">
@@ -35,6 +35,8 @@ const BookList: FC = () => {
                     <p className={`h1 ${s.pointer} text-primary mb-3`}>{title}</p>
                     <p className={`h5 text-muted`}>{subTitle}</p>
                 </div>
+            </div>
+            <div className='row'>
                 {finalData?.map((cv: BookObj) => (
                     <div key={uuidv4()} className="col-12 col-lg-4 mt-4">
                         <section className="w-100 h-100 bg-light p-3 rounded">
