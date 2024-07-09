@@ -8,7 +8,7 @@ export interface BookObj {
     book_pages: number
 }
 
-interface Books {
+export interface Books {
     books: BookObj[]
     count: number
 }
