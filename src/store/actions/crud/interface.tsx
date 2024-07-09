@@ -18,7 +18,7 @@ interface FilterProp {
     values: string[]
 }
 
-interface APIPayload {
+export interface APIPayload {
     page?: number,
     itemsPerPage?: number,
     filters?: FilterProp[]

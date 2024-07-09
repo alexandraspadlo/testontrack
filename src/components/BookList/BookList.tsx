@@ -6,14 +6,25 @@ import Header from './Header'
 import { useGetBooksMutation } from '../../store/actions'
 
 const BookList: FC = () => {
-    const [page, setPage] = useState(1)
+    const [page, setPage] = useState<number>(1)
+    const [filter, setFilter] = useState<string | undefined>()
 
     const [getBooks, { data, isLoading,
         // error 
     }] = useGetBooksMutation()
 
+    const handlePost = () => getBooks({
+        page,
+        ...(filter ? {
+            filters: [{
+                type: 'all',
+                values: [filter]
+            }]
+        } : {}),
+    })
+
     useEffect(() => {
-        getBooks({ page })
+        handlePost()
     }, [page])
 
     if (isLoading || !data) return <LoadingPage />
@@ -27,7 +38,7 @@ const BookList: FC = () => {
 
     return (
         <div className="container py-5">
-            <Header handlePage={handlePage} maxPage={maxPage} page={page} />
+            <Header handlePage={handlePage} maxPage={maxPage} page={page} setPage={setPage} handlePost={handlePost} filter={filter} setFilter={setFilter} />
             <div className='row'>
                 {data?.books?.map?.((cv: BookObj) => (
                     <div key={uuidv4()} className="col-12 col-lg-4 mt-4">

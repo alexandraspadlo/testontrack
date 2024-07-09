@@ -1,18 +1,17 @@
 import { rest } from 'msw'
-import { REACT_APP_API_URL } from '../../constants'
 
 const handlers = [
-    rest.post(`${REACT_APP_API_URL}books/`, (_, res, ctx) => res(ctx.json({
+    rest.post(`*/books/`, (_, res, ctx) => res(ctx.json({
         books: [
             {
                 id: 2086,
                 book_author: [
-                    'Ανώνυμος'
+                    'My fake author'
                 ],
-                book_title: 'Ο Αλέξανδρος ο Μακεδών',
+                book_title: 'My book title',
                 book_publication_year: 1529,
-                book_publication_country: 'Ιταλία',
-                book_publication_city: 'Βενετία',
+                book_publication_country: 'United Kingdom',
+                book_publication_city: 'London',
                 book_pages: 104
             },
         ],

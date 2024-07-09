@@ -6,7 +6,10 @@ import Header from './Header'
 const commonProps = {
     handlePage: jest.fn(),
     maxPage: 4,
-    page: 1
+    page: 1,
+    setPage: jest.fn(),
+    setFilter: jest.fn(),
+    handlePost: jest.fn()
 }
 
 describe('test Header component', () => {
@@ -29,6 +32,12 @@ describe('test Header component', () => {
         const mockFunction = jest.fn()
         renderWithProviders(<Header {...commonProps} handlePage={mockFunction} />)
         fireEvent.click(screen.getByText(/Previous/))
+        expect(mockFunction).toHaveBeenCalledTimes(1)
+    })
+    test('click find button', async () => {
+        const mockFunction = jest.fn()
+        renderWithProviders(<Header {...commonProps} handlePost={mockFunction} />)
+        fireEvent.click(screen.getByText(/Find/))
         expect(mockFunction).toHaveBeenCalledTimes(1)
     })
     test('renders next disable button', async () => {
