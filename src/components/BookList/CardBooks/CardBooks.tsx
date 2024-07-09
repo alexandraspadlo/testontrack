@@ -20,11 +20,10 @@ const CardBooks: FC<BookProps> = ({ books }) => {
                         <p className="mb-2">Author: <strong>{cv?.book_author}</strong></p>
                         <p className="mb-0">Year: <strong>{cv?.book_publication_year}</strong></p>
                         <p className="mb-0">Pages: <strong>{cv?.book_pages}</strong></p>
-                        <p className="mb-0">Publication address: <strong>{[cv?.book_publication_city, cv?.book_publication_country].filter(obj => obj).join(', ')}</strong></p>
+                        <p className="mb-0">Location: <strong>{[cv?.book_publication_city, cv?.book_publication_country].filter(obj => obj).join(', ')}</strong></p>
                     </section>
                 </div>
-            )
-            )}
+            ))}
         </div>
     )
 }

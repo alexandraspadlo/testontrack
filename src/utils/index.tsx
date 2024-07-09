@@ -9,6 +9,12 @@ export const JsonObject = (str: string) => {
     }
 }
 
+export const getURLParameters = () => Object.fromEntries([...(new URLSearchParams(window.location.search)).entries()])
+
+export const validPageNumber = (pNum: number) => !isNaN(pNum) && pNum > 0 && Number.isFinite(pNum) && Number.isInteger(pNum)
+
+export const changeUrl = (urlStr: string) => window.history.pushState(null, '', urlStr)
+
 export const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
 export const handleInputs = (ev: ChangeEvent<HTMLInputElement>, callback: (p: object) => void) => {
