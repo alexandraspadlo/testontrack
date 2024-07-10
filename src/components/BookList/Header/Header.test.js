@@ -13,10 +13,10 @@ const commonProps = {
 }
 
 describe('test Header component', () => {
-    test('renders header with full props, first button disabled', async () => {
+    test('renders header with full props, first button disabled', () => {
         render(<Header {...commonProps} />)
         expect(screen.getByText(/Here are a books available - check the list below/i)).toBeInTheDocument()
-        expect(await screen.findByText(/Book list/i)).toBeInTheDocument()
+        expect(screen.getByText(/Book list/i)).toBeInTheDocument()
     })
     test('renders previous disable button', async () => {
         render(<Header {...commonProps} />)
