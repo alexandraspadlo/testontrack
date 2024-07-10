@@ -1,15 +1,18 @@
 import { FC } from 'react'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 import ErrorProps from './interface'
 
 const ErrorPage: FC<ErrorProps> = ({ err }) => (
-        <div className="container py-5">
-            <div className="row">
-                <div className="col-12 pt-5 text-center">
-                    <p className="h5 pt-5 text-danger"><strong>Something went wrong!!</strong></p>
-                    <p className="mb-0">Error msg: {err}</p>
-                </div>
-            </div>
-        </div>
-    )
+    <Container className='py-5'>
+        <Row>
+            <Col className='pt-5 text-center'>
+                <p className="h5 pt-5 text-danger"><strong>Something went wrong!!</strong></p>
+                <p className="mb-0">Error msg: {err}</p>
+            </Col>
+        </Row>
+    </Container>
+)
 
 export default ErrorPage

@@ -1,4 +1,5 @@
 import { FC, useEffect, useState } from 'react'
+import Container from 'react-bootstrap/Container'
 import LoadingPage from '../Generics/LoadingPage'
 import ErrorPage from '../Generics/ErrorPage'
 import CardBooks from './CardBooks'
@@ -44,7 +45,7 @@ const BookList: FC = () => {
     }
 
     return (
-        <div className="container py-5">
+        <Container className="py-5">
             <Header
                 handlePage={handlePage}
                 maxPage={maxPage}
@@ -57,7 +58,7 @@ const BookList: FC = () => {
                 setItems={setItems}
             />
             <CardBooks books={data?.books} />
-        </div>
+        </Container>
     )
 }
 
