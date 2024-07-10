@@ -1,8 +1,7 @@
-import { screen } from '@testing-library/react'
-import { renderWithProviders } from '../../../utils/testutils'
+import { render, screen } from '@testing-library/react'
 import LoadingPage from './LoadingPage'
 
 test('renders loading', () => {
-  renderWithProviders(<LoadingPage />)
+  render(<LoadingPage />)
   expect(screen.getByText(/LOADING . . ./i)).toBeInTheDocument()
 })
