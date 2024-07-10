@@ -34,7 +34,7 @@ describe('test book list comp', () => {
     fireEvent.click(await screen.findByText(/Next/))
     const prevPage = await screen.findByText('Page:')
     expect(prevPage.textContent).toBe('Page: 2')
-    fireEvent.change(await screen.findByPlaceholderText('Search'), { target: { value: 'Test' } })
+    fireEvent.change(await screen.findByPlaceholderText('Title, author, etc'), { target: { value: 'Test' } })
     fireEvent.click(await screen.findByText(/Find/))
     const pageBack = await screen.findByText('Page:')
     expect(pageBack.textContent).toBe('Page: 1')

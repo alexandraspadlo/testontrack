@@ -23,7 +23,7 @@
   },
   "scripts": {
     "be4-install": "yarn install && rimraf .husky && yarn husky && echo 'yarn lint-staged' > .husky/pre-commit && echo 'yarn testcover' > .husky/pre-push",
-    "be4-commit": "yarn test -u && yarn lint && git add --all",
+    "be4-commit": "yarn testcover -u && yarn lint && git add --all",
     "lint": "yarn lint:ts && yarn lint:scss",
     "lint:ts": "eslint './src/**/*.{ts,tsx}' --fix",
     "lint:scss": "stylelint 'src/**/*.scss' --custom-syntax postcss-scss --fix",

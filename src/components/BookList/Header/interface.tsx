@@ -6,4 +6,6 @@
     setFilter: (param: string | undefined) => void
     setPage: (param: number) => void
     handlePost: () => void
+    itemsPerPage: number
+    setItems: (param: number) => void
 }

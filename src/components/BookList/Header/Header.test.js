@@ -8,7 +8,8 @@ const commonProps = {
     page: 1,
     setPage: jest.fn(),
     setFilter: jest.fn(),
-    handlePost: jest.fn()
+    handlePost: jest.fn(),
+    setItems: jest.fn()
 }
 
 describe('test Header component', () => {
@@ -37,6 +38,12 @@ describe('test Header component', () => {
         const mockFunction = jest.fn()
         render(<Header {...commonProps} handlePost={mockFunction} />)
         fireEvent.click(screen.getByText(/Find/))
+        expect(mockFunction).toHaveBeenCalledTimes(1)
+    })
+    test('change selector', async () => {
+        const mockFunction = jest.fn()
+        render(<Header {...commonProps} setItems={mockFunction} />)
+        fireEvent.change(screen.getByTestId('testSelect'), { target: { value: 100}})
         expect(mockFunction).toHaveBeenCalledTimes(1)
     })
     test('renders next disable button', async () => {

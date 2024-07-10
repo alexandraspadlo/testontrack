@@ -9,6 +9,7 @@ import { getURLParameters, validPageNumber, changeUrl } from '../../utils'
 const BookList: FC = () => {
     const [page, setPage] = useState<number>(1)
     const [filter, setFilter] = useState<string | undefined>()
+    const [itemsPerPage, setItems] = useState<number>(20)
 
     const [getBooks, { data, isLoading, error }] = useGetBooksMutation()
 
@@ -23,18 +24,19 @@ const BookList: FC = () => {
         return getBooks({
             page,
             ...finalFilters,
+            itemsPerPage
         })
     }
 
     useEffect(() => {
         changeUrl(`/?page=${page}`)
         handlePost()
-    }, [page])
+    }, [page, itemsPerPage])
 
     if (error) return <ErrorPage err={JSON.stringify(error)} />
     if (isLoading || !data) return <LoadingPage />
 
-    const maxPage = Math.ceil(data?.count / 20)
+    const maxPage = Math.ceil(data?.count / itemsPerPage)
 
     const handlePage = (isIncrement?: boolean) => {
         if (isIncrement ? page >= maxPage : page <= 1) return null
@@ -51,6 +53,8 @@ const BookList: FC = () => {
                 handlePost={handlePost}
                 filter={filter}
                 setFilter={setFilter}
+                itemsPerPage={itemsPerPage}
+                setItems={setItems}
             />
             <CardBooks books={data?.books} />
         </div>
